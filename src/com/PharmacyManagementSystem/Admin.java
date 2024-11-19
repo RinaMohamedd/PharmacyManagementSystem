@@ -1,30 +1,39 @@
 package com.PharmacyManagementSystem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Admin extends User{
 
-    private List<Product> products;
-    private List<User> users;
-    private List<Cart> orders;
+    private ArrayList<Product> products;
+    private ArrayList<User> users;
+    private ArrayList<Cart> orders;
+    private static int n = 0;
 
     public Admin() {};
-    public Admin(String id, String name, String email) {
-        super(id, name, Role.ADMIN, email);
+    public Admin(String name, String email) {
+        super(name, Role.ADMIN, email);
+        id = generateId();
         products = new ArrayList<>();
         users = new ArrayList<>();
         orders = new ArrayList<>();
     }
 
+    //probably done
     public void addProduct(Product product) {
         products.add(product);
         System.out.println("Product added successfully");
     }
 
-    public void editProduct(int productId, Product updatedProduct) { //done
+    //needs to change in case the product id doesn't exist
+    public void removeProduct(String productId) {
+        products.removeIf(product -> product.getProductId().equals(productId));
+        System.out.println("Product removed");
+    }
+
+    //will need to change so that I can edit one thing at a time
+    public void editProduct(String productId, Product updatedProduct) { //done
         for (Product product : products) {
-            if (product.getProductId() == productId) {
+            if (product.getProductId().equals(productId)) {
                 product.setName(updatedProduct.getName());
                 product.setPrice(updatedProduct.getPrice());
                 product.setSupplier(updatedProduct.getSupplier());
@@ -35,16 +44,12 @@ public class Admin extends User{
         System.out.println("Product not found");
     }
 
-    public void removeProduct(int productId) {
-        products.removeIf(product -> product.getProductId() == productId);
-        System.out.println("Product removed");
-    }
-
+    //probably done
     public Product searchProductByField(String field, String value) {
         for (Product product : products) {
             if (field.equalsIgnoreCase("name") && product.getName().equalsIgnoreCase(value)) {
                 return product;
-            } else if (field.equalsIgnoreCase("id") && Integer.toString(product.getProductId()).equals(value)) {
+            } else if (field.equalsIgnoreCase("id") && product.getProductId().equals(value)) {
                 return product;
             }
         }
@@ -59,7 +64,7 @@ public class Admin extends User{
 
     public void editUser(String userId, User updatedUser) {
         for (User user : users) {
-            if (user.getId() == userId) {
+            if (user.getId().equals(userId)) {
                 user.setName(updatedUser.getName());
                 System.out.println("User updated successfully");
                 return;
@@ -70,7 +75,7 @@ public class Admin extends User{
     }
 
     public void removeUser(String userId) {
-        users.removeIf(user -> user.getId() == userId);
+        users.removeIf(user -> user.getId().equals(userId));
         System.out.println("User removed");
     }
 
@@ -104,4 +109,10 @@ public class Admin extends User{
         orders.add(order);
         System.out.println("Order added with ID: " + order.getOrderId());
     }*/
+
+    private String generateId() {
+        String Id = "Admin_" + n;
+        n++;
+        return Id;
+    }
 }

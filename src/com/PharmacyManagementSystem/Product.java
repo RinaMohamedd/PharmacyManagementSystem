@@ -3,17 +3,18 @@ package com.PharmacyManagementSystem;
 import java.time.LocalDate;
 
 public class Product {
-    private int productId;
+    private String productId;
     private String name;
     private double price;
     private int quantity;
     private Supplier supplier;
     private LocalDate expirationDate;
+    private static int n = 0;
 
 
     public Product() {}
-    public Product(int productId, String name, double price, int quantity, Supplier supplier, LocalDate expirationDate) {
-        this.productId = productId;
+    public Product(String name, double price, int quantity, Supplier supplier, LocalDate expirationDate) {
+        productId = generateId();
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -22,13 +23,9 @@ public class Product {
     }
 
 
-    public int getProductId() {
+    public String getProductId() {
         return productId;
     }
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
 
     public String getName() {
         return name;
@@ -94,5 +91,11 @@ public class Product {
 
     public boolean isExpired() {
         return LocalDate.now().isAfter(expirationDate);
+    }
+
+    private String generateId() {
+        String Id = "Product_" + n;
+        n++;
+        return Id;
     }
 }

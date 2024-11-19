@@ -1,27 +1,21 @@
 package com.PharmacyManagementSystem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Customer extends User{
-    private List<Cart> orderHistory;
+    private ArrayList<Cart> orderHistory;
     private static int n = 0;
 
-    public Customer() {
-        super();
-        id = generateId();
-        role = Role.CUSTOMER;
-        orderHistory = new ArrayList<>();
-    }
+    public Customer() {}
 
     public Customer(String name, String email) {
-        super("", name, Role.CUSTOMER, email);
+        super(name, Role.CUSTOMER, email);
         id = generateId();
         orderHistory = new ArrayList<>();
     }
 
     //something wrong here
-    public List<Cart> getOrderHistory() {
+    public ArrayList<Cart> getOrderHistory() {
         return orderHistory;
     }
 
@@ -61,7 +55,7 @@ public class Customer extends User{
         }
     }
 
-    public String generateId() {
+    private String generateId() {
         String Id = "Customer_" + n;
         n++;
         return Id;

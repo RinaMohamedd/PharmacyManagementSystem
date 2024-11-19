@@ -1,28 +1,26 @@
 package com.PharmacyManagementSystem;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Supplier {
-    private int supplierId;
-    private String name;
+public class Supplier extends User {
     private String contactInfo;
-    private List<Product> productSupplied;
+    private ArrayList<Product> productSupplied;
+    private static int n = 0;
 
     public Supplier() {}
 
-    public Supplier(int supplierId, String name, String contactInfo) {
-        this.supplierId = supplierId;
-        this.name = name;
+    public Supplier(String name, String email, String contactInfo) {
+        super(name, Role.SUPPLIER, email);
+        id = generateId();
         this.contactInfo = contactInfo;
         productSupplied = new ArrayList<>();
     }
 
-    public int getSupplierId() {
-        return supplierId;
+    public String getId() {
+        return id;
     }
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setSupplierId(String id) {
+        this.id = id;
     }
 
 
@@ -53,8 +51,14 @@ public class Supplier {
         return productSupplied.size();
     }
 
+    private String generateId() {
+        String Id = "Supplier_" + n;
+        n++;
+        return Id;
+    }
+
     public void displaySupplierInfo() {
-        System.out.println("Supplier ID: " + supplierId);
+        System.out.println("Supplier ID: " + id);
         System.out.println("Name: " + name);
         System.out.println("Contact Info: " + contactInfo);
         System.out.println("Number of Products Supplied: " + getProductCount());

@@ -1,7 +1,7 @@
 package com.PharmacyManagementSystem;
 
 public class User {
-    protected static String id;
+    protected String id = "0";
     protected String name;
     protected Role role;
     protected String email;
@@ -9,13 +9,14 @@ public class User {
     public enum Role {
         ADMIN,
         CASHIER,
-        CUSTOMER;
+        CUSTOMER,
+        SUPPLIER;
     }
 
 
     public User() {}
-    public User(String id, String name, Role role, String email) {
-        this.id = id;
+    public User(/*String id,*/ String name, Role role, String email) {
+        //this.id = id;
         this.name = name;
         this.role = role;
         this.email = email;

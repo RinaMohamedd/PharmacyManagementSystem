@@ -1,18 +1,21 @@
 package com.PharmacyManagementSystem;
 
 import java.util.ArrayList;
-import java.util.List;
 import com.PharmacyManagementSystem.Cart.Status;
 
 public class Cashier extends User{
-    private List<Cart> orderHandled;
+    private ArrayList<Cart> orderHandled;
+    private static int n = 0;
 
-    public Cashier(String id, String name, String email) {
-        super(id, name, Role.CASHIER, email);
+    public Cashier() {}
+
+    public Cashier(String name, String email) {
+        super(name, Role.CASHIER, email);
+        id = generateId();
         orderHandled = new ArrayList<>();
     }
 
-    public List<Cart> getOrdersHandled() {
+    public ArrayList<Cart> getOrdersHandled() {
         return orderHandled;
     }
 
@@ -40,7 +43,8 @@ public class Cashier extends User{
     }
 
     private String generateId() {
-        //will be changed
-        return "";
+        String Id = "Cashier_" + n;
+        n++;
+        return Id;
     }
 }

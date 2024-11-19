@@ -2,14 +2,13 @@ package com.PharmacyManagementSystem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Cart {
     protected String id = "0";
-    private Status status; //i feel like it's unnecessary but idk
+    private Status status; //I feel like it's unnecessary but idk
     protected Customer customer;
-    private List<Product> productList;
-    private List<Integer> quantityList;
+    private ArrayList<Product> productList;
+    private ArrayList<Integer> quantityList;
     protected double totalPrice;
     private LocalDate orderDate;
     private static int n = 0;
@@ -32,6 +31,9 @@ public class Cart {
     public Cart(Customer customer) {
         id = generateId();
         this.customer = customer;
+        this.productList = new ArrayList<>();
+        this.quantityList = new ArrayList<>();
+        this.totalPrice = 0.0;
         this.orderDate = LocalDate.now();
     }
 
@@ -45,7 +47,7 @@ public class Cart {
     }
 
     //comment this out
-    public List<Product> getProductList() {
+    public ArrayList<Product> getProductList() {
         return productList;
     }
 
@@ -66,7 +68,7 @@ public class Cart {
     }
 
     //comment this out
-    public List<Integer> getQuantityList() {
+    public ArrayList<Integer> getQuantityList() {
         return quantityList;
     }
 
@@ -115,7 +117,7 @@ public class Cart {
         return order;
     }*/
 
-    public String generateId() {
+    private String generateId() {
         String Id = "Cart_" + n;
         n++;
         return Id;
