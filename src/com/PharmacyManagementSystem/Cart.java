@@ -59,7 +59,7 @@ public class Cart {
         return status;
     }
 
-    public void printProductlist() {
+    public void printProductList() {
         System.out.println("List of products:");
         for(int i = 0 ; i < productList.size(); i++) {
             System.out.println("Product " + (i+1) + ": " + (productList.get(i)).getName() +
@@ -118,11 +118,12 @@ public class Cart {
     }*/
 
     private String generateId() {
-        String Id = "Cart_" + n;
+        String Id = "Order_" + n;
         n++;
         return Id;
     }
 
+    //will check later
     @Override
     public String toString() {
         return "Order ID: " + id + ", Customer: " + customer.getName() + ", Total Price: "

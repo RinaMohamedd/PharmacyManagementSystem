@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Customer extends User{
     private ArrayList<Cart> orderHistory;
-    private static int n = 0;
+    private static int n = 0; //for id
 
     public Customer() {}
 
-    public Customer(String name, String email) {
-        super(name, Role.CUSTOMER, email);
+    public Customer(String name, String email, String password) {
+        super(name, Role.CUSTOMER, email, password);
         id = generateId();
         orderHistory = new ArrayList<>();
     }
@@ -19,9 +19,7 @@ public class Customer extends User{
         return orderHistory;
     }
 
-    public void addOrder(Cart order) {
-        orderHistory.add(order);
-    }
+    public void addOrder(Cart order) { orderHistory.add(order); }
 
     public void removeOrder(Cart order) {
         orderHistory.remove(order);
@@ -33,9 +31,8 @@ public class Customer extends User{
         for(Cart order: orderHistory) {
             System.out.println("Order(" + index + ") details:");
             System.out.print("ID: ");
-            String h = order.getId();
-            System.out.println(h);
-            order.printProductlist();
+            System.out.println(order.getId());
+            order.printProductList();
             System.out.println("Total Price: " + order.getTotalPrice());
             System.out.println("Order Date: " + order.getOrderDate());
             index++;

@@ -51,10 +51,10 @@ public class Product {
     }
 
 
-    public Supplier getSupplier() {
+    public Supplier getSuppliers() {
         return supplier;
     }
-    public void setSupplier(Supplier supplier) {
+    public void setSuppliers(Supplier supplier) {
         this.supplier = supplier;
     }
 

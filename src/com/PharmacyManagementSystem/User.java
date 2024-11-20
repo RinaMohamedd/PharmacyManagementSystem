@@ -1,10 +1,12 @@
 package com.PharmacyManagementSystem;
 
-public class User {
+//not sure if we need to have it as abstract, but we'll see
+public abstract class User {
     protected String id = "0";
     protected String name;
     protected Role role;
     protected String email;
+    protected String password;
 
     public enum Role {
         ADMIN,
@@ -15,11 +17,11 @@ public class User {
 
 
     public User() {}
-    public User(/*String id,*/ String name, Role role, String email) {
-        //this.id = id;
+    public User(String name, Role role, String email, String password) {
         this.name = name;
         this.role = role;
         this.email = email;
+        this.password = password;
     }
 
 
@@ -52,5 +54,12 @@ public class User {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

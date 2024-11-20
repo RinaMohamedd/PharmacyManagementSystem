@@ -1,11 +1,20 @@
 package com.PharmacyManagementSystem;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class PharmacyMain {
     public static void main(String[] args) {
-        //Admin a = new Admin("Rina", "Rina123@gmail.com");
+        Admin admin = new Admin("Rina", "Rina123@gmail.com", "1234");
+        //
+        ArrayList<Supplier> suppliers = admin.getSuppliers();
+        Map<Integer, ArrayList<Supplier>> s = new HashMap<>();
+        //
         int choice;
+        String password;
         Scanner in = new Scanner(System.in);
         do {
             int innerChoice;
@@ -22,75 +31,102 @@ public class PharmacyMain {
 
             switch (choice) {
                 case 1:
-                    do {
-                        System.out.println("Admin Menu:");
-                        System.out.println("-----------------------------------");
-                        System.out.println("| 1. Add New Product              |");
-                        System.out.println("| 2. Edit Product                 |");
-                        System.out.println("| 3. Remove Product               |");
-                        System.out.println("| 4. Search for a Product         |");
-                        System.out.println("| 5. View Reports About Products  |");
-                        System.out.println("| 6. Add New User                 |");
-                        System.out.println("| 7. Edit User                    |");
-                        System.out.println("| 8. Remove User                  |");
-                        System.out.println("| 9. Search for a User            |");
-                        System.out.println("| 10. View Reports About Users    |");
-                        System.out.println("| 11. View Reports About Orders   |");
-                        System.out.println("| 12. LogOut                      |");
-                        System.out.println("-----------------------------------");
-                        System.out.print("Enter your choice: ");
-                        innerChoice = in.nextInt();
+                    System.out.print("Enter password: ");
+                    password = in.next();
+                    if (!admin.getPassword().equals(password)) {
+                        System.out.println("Incorrect password");
+                        System.out.println();
+                        break;
+                    }
+                    else {
+                        do {
+                            System.out.println("Admin Menu:");
+                            System.out.println("-----------------------------------");
+                            System.out.println("| 1. Add New Product              |");
+                            System.out.println("| 2. Edit Product                 |");
+                            System.out.println("| 3. Remove Product               |");
+                            System.out.println("| 4. Search for a Product         |");
+                            System.out.println("| 5. View Reports About Products  |");
+                            System.out.println("| 6. Add New User                 |");
+                            System.out.println("| 7. Edit User                    |");
+                            System.out.println("| 8. Remove User                  |");
+                            System.out.println("| 9. Search for a User            |");
+                            System.out.println("| 10. View Reports About Users    |");
+                            System.out.println("| 11. View Reports About Orders   |");
+                            System.out.println("| 12. LogOut                      |");
+                            System.out.println("-----------------------------------");
+                            System.out.print("Enter your choice: ");
+                            innerChoice = in.nextInt();
 
-                        switch (innerChoice) {
-                            case 1:
-                                System.out.println("Add New Product");
-                                System.out.println();
-                                break;
-                            case 2:
-                                System.out.println("Edit Product");
-                                System.out.println();
-                                break;
-                            case 3:
-                                System.out.println("Remove Product");
-                                System.out.println();
-                                break;
-                            case 4:
-                                System.out.println("Search for s Product");
-                                System.out.println();
-                                break;
-                            case 5:
-                                System.out.println("View Reports About Products");
-                                System.out.println();
-                                break;
-                            case 6:
-                                System.out.println("Add New User");
-                                System.out.println();
-                                break;
-                            case 7:
-                                System.out.println("Edit User");
-                                System.out.println();
-                                break;
-                            case 8:
-                                System.out.println("Remove User");
-                                System.out.println();
-                                break;
-                            case 9:
-                                System.out.println("Search for a User");
-                                System.out.println();
-                                break;
-                            case 10:
-                                System.out.println("View Reports About Users");
-                                System.out.println();
-                                break;
-                            case 11:
-                                System.out.println("View Reports About Orders");
-                                System.out.println();
-                                break;
-                            default:
-                                System.out.println("You are now logged out");
-                                System.out.println();
+                                switch (innerChoice) {
+                                    case 1:
+                                        String name;
+                                        double price;
+                                        int quantity;
+                                        String supplierId;
+                                        LocalDate expDate;
+                                        //I should check if the product already exists
+                                        System.out.print("Enter Product Name: ");
+                                        name = in.next();
+                                        System.out.print("Enter Product Price: ");
+                                        price = in.nextDouble();
+                                        System.out.print("Enter Product Quantity: ");
+                                        quantity = in.nextInt();
+                                        //I should check if the supplier exists or not
+                                        //System.out.print("Enter Product Supplier ID: ");
+                                        //supplierId = in.next();
+                                        //if()
+                                        System.out.print("Enter Product Expiration Date: ");
+                                        expDate = LocalDate.parse(in.next());
+                                        System.out.println("Add New Product");
+                                        System.out.println();
+                                        break;
+                                    case 2:
+                                        System.out.println("Edit Product");
+                                        System.out.println();
+                                        break;
+                                    case 3:
+                                        System.out.println("Remove Product");
+                                        System.out.println();
+                                        break;
+                                    case 4:
+                                        System.out.println("Search for s Product");
+                                        System.out.println();
+                                        break;
+                                    case 5:
+                                        System.out.println("View Reports About Products");
+                                        System.out.println();
+                                        break;
+                                    case 6:
+                                        System.out.println("Add New User");
+                                        System.out.println();
+                                        break;
+                                    case 7:
+                                        System.out.println("Edit User");
+                                        System.out.println();
+                                        break;
+                                    case 8:
+                                        System.out.println("Remove User");
+                                        System.out.println();
+                                        break;
+                                    case 9:
+                                        System.out.println("Search for a User");
+                                        System.out.println();
+                                        break;
+                                    case 10:
+                                        System.out.println("View Reports About Users");
+                                        System.out.println();
+                                        break;
+                                    case 11:
+                                        System.out.println("View Reports About Orders");
+                                        System.out.println();
+                                        break;
+                                    default:
+                                        System.out.println("You are now logged out");
+                                        System.out.println();
+                                }
+                            } while (innerChoice != 12);
                         }
-                    } while(innerChoice != 12);
                     break;
                 case 2:
                     /*String name, email;

@@ -9,8 +9,8 @@ public class Cashier extends User{
 
     public Cashier() {}
 
-    public Cashier(String name, String email) {
-        super(name, Role.CASHIER, email);
+    public Cashier(String name, String email, String password) {
+        super(name, Role.CASHIER, email, password);
         id = generateId();
         orderHandled = new ArrayList<>();
     }

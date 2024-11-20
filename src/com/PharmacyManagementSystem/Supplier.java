@@ -9,8 +9,8 @@ public class Supplier extends User {
 
     public Supplier() {}
 
-    public Supplier(String name, String email, String contactInfo) {
-        super(name, Role.SUPPLIER, email);
+    public Supplier(String name, String email, String password, String contactInfo) {
+        super(name, Role.SUPPLIER, email, password);
         id = generateId();
         this.contactInfo = contactInfo;
         productSupplied = new ArrayList<>();
