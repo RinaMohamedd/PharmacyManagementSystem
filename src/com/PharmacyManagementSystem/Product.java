@@ -65,16 +65,19 @@ public class Product {
         this.numberOfOrders+= quantity;
     }
 
-    public void addProduct(int productId, int quantity, String name) {
+    //we probably don't need this cuz we already have a method for this in Admin
+    /*public void addProduct(int productId, int quantity, String name) {
         this.productId += productId;
         this.quantity += quantity;
         this.name = name;
-    }
+    }*/
 
+    //might remove if not needed
     public void increaseStock(int quantity) {
         this.quantity += quantity;
     }
 
+    //might remove if not needed
     public void reduceStock(int quantity) {
         if (quantity <= this.quantity) {
             this.quantity -= quantity;
@@ -87,15 +90,6 @@ public class Product {
         return this.quantity != 0;
     }
 
-    public void displayProductInfo() {
-        System.out.println("Product ID: " + productId);
-        System.out.println("Name: " + name);
-        System.out.println("Price: " + price);
-        System.out.println("Quantity in Stock: " + quantity);
-        System.out.println("Supplier: " + supplier.getName());
-        System.out.println("Expiration Date: " + expirationDate);
-    }
-
     public boolean isExpired() {
         return LocalDate.now().isAfter(expirationDate);
     }
@@ -105,4 +99,12 @@ public class Product {
         n++;
         return Id;
     }
+
+    @Override
+    public String toString() {
+        return "{ Product ID: " + productId + ", Product Name: " + name + ", Product Price: " + price
+                + ", Product Quantity: " + quantity + ", Product Supplier: " + supplier + ", Product Expiration Date: "
+                + expirationDate + " }";
+    }
+
 }
