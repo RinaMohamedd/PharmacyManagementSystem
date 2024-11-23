@@ -114,18 +114,24 @@ public class Admin extends User{
     public void viewProductReport() {
         System.out.println("---- Products Report ----");
         //will be changed
-        System.out.println("Number of pieces sold over a specific period of time:");
         System.out.println("List of Suppliers:");
+        for(Supplier supplier: suppliers) {
+            System.out.print(supplier.getName() + ": ");
+            for(Product product : supplier.getProductSupplied()) {
+                System.out.println(product.getName());
+            }
+        }
         System.out.println("List of Prices:");
         System.out.println("Best seller Product over a specific period of time:");
         System.out.println("Most revenue Product over a specific period of time:");
 
-        /*for (Product product : products) {
-            System.out.println("Product ID: " + product.getProductId() + ", Name: " + product.getName() + ", Price: " + product.getPrice());
+        for (Product product : products) {
+            System.out.println("Number of pieces sold over a specific period of time:");
+
             System.out.println("List of suppliers:");
             System.out.println(product.getSuppliers());
-            System.out.println("")
-        }*/
+            System.out.println("");
+        }
     }
 
     //Cashier methods
@@ -285,16 +291,163 @@ public class Admin extends User{
     //20/11
     public void viewUserReport() {
         System.out.println("---- Users Report ----");
-        //will be changed
+
+
+        //Number of Orders per each Cashier and their details
         System.out.println("Number of Orders per each Cashier and their details:");
+        for (Cashier cashier : cashiers) {
+            System.out.println("Number of Orders for " + cashier.getId() + ": " + cashier.getOrdersHandled().size());
+            System.out.println("Orders Details:");
+            for(Cart order: cashier.getOrdersHandled()) {
+                System.out.println(order);
+            }
+            System.out.println();
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Cashier with the maximum number of Orders
         System.out.println("Cashier with the maximum number of Orders:");
+        int maxOrders_cashier = 0;
+        Cashier maxOrderCashier = null;
+        for (Cashier cashier : cashiers) {
+            if(cashier.getOrdersHandled().size() > maxOrders_cashier)
+            {
+                maxOrders_cashier = cashier.getOrdersHandled().size();
+                maxOrderCashier = cashier;
+            }
+        }
+        if (maxOrderCashier != null) {
+            System.out.println("Cashier: " + maxOrderCashier);
+            System.out.println("Number of Orders: " + maxOrders_cashier);
+        } else {
+            System.out.println("No cashiers to determine the maximum no. of Orders");
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Cashier with the maximum number of revenue
         System.out.println("Cashier with the maximum number of revenue:");
+        double maxRev = 0.0;
+        Cashier maxRevCashier = null;
+        for (Cashier cashier : cashiers) {
+
+            if (cashier.getTotalPriceOfAllOrders() > maxRev) {
+                maxRev = cashier.getTotalPriceOfAllOrders();
+                maxRevCashier = cashier;
+            }
+        }
+        if (maxRevCashier != null) {
+            System.out.println("Cashier: " + maxRevCashier);
+            System.out.println("Revenue: " + maxRev);
+        } else {
+            System.out.println("No cashiers to determine the maximum revenue");
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Number of Orders per each Supplier and their details
         System.out.println("Number of Orders per each Supplier and their details:");
+        for (Supplier supplier : suppliers) {
+            System.out.println("Number od Orders for " + supplier.getId() + ": " + supplier.getProductCount());
+            System.out.println("Orders Details:");
+            for(Product order : supplier.getProductSupplied()) {
+                System.out.println(order);
+            }
+            System.out.println();
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Supplier with maximum number of Orders
         System.out.println("Supplier with maximum number of Orders:");
+        int maxOrders_sup = 0;
+        Supplier maxOrderSupplier = null;
+        for (Supplier supplier : suppliers) {
+            if(supplier.getProductCount() > maxOrders_cashier)
+            {
+
+                maxOrders_sup = supplier.getProductCount();
+                maxOrderSupplier = supplier;
+            }
+        }
+        if (maxOrderSupplier != null) {
+            System.out.println("Supplier: " + maxOrderSupplier);
+            System.out.println("Number of Orders: " + maxOrders_sup);
+        } else {
+            System.out.println("No suppliers to determine the maximum no. of Orders");
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Supplier with maximum number of revenue
         System.out.println("Supplier with maximum number of revenue:");
+        Supplier maxRevSupplier = null;
+        double maxRevSupplierRev = 0.0;
+        for (Supplier supplier : suppliers) {
+            if (supplier.getTotalPriceOfAllOrders() > maxRevSupplierRev) {
+                maxRevSupplierRev = supplier.getTotalPriceOfAllOrders();
+                maxRevSupplier = supplier;
+            }
+        }
+        if (maxRevSupplier != null) {
+            System.out.println("Supplier: " + maxRevSupplier);
+            System.out.println("Revenue: " + maxRevSupplierRev);
+        } else {
+            System.out.println("No suppliers to determine the maximum revenue");
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Number of Orders per each Customer and their details
         System.out.println("Number of Orders per each Customer and their details:");
+        for (Customer customer : customers) {
+            System.out.println("Number of Orders for " + customer.getId() + ": " + customer.getOrderHistory().size());
+            System.out.println("Orders History:");
+            for(Cart order : customer.getOrderHistory()) {
+                System.out.println(order);
+            }
+            System.out.println();
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Customer with the maximum number of Orders
         System.out.println("Customer with the maximum number of Orders:");
+        Customer maxOrderCustomer = null;
+        double maxOrders_customer = 0;
+        for (Customer customer : customers) {
+            if (customer.getOrderHistory().size() > maxOrders_customer) {
+                maxOrders_customer = customer.getOrderHistory().size() ;
+                maxOrderCustomer = customer;
+            }
+        }
+        if (maxOrderCustomer != null) {
+            System.out.println("Customer: " + maxOrderCustomer);
+            System.out.println("Number of Orders: " + maxOrders_customer);
+        } else {
+            System.out.println("No customers to determine the maximum no. of Orders");
+        }
+        System.out.println("-------------------------------------------------------");
+
+
+        //Customer with the maximum number of revenue
         System.out.println("Customer with the maximum number of revenue:");
+        Customer maxRevCustomer = null;
+        double maxRevCustomerRev=0;
+        for (Customer customer : customers) {
+            if (customer.getTotalPriceOfAllOrders() > maxRevCustomerRev) {
+                maxRevCustomerRev = customer.getTotalPriceOfAllOrders();
+                maxRevCustomer = customer;
+            }
+        }
+        if (maxRevCustomer != null) {
+            System.out.println("Customer: " + maxRevCustomer);
+            System.out.println("Revenue: " + maxRevCustomerRev);
+        } else {
+            System.out.println("No customers to determine the maximum revenue");
+        }
+        System.out.println("-------------------------------------------------------");
     }
 
     //will be changed

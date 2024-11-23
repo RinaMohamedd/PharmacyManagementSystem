@@ -9,6 +9,7 @@ public class Product {
     private int quantity;
     private Supplier supplier;
     private LocalDate expirationDate;
+    private int numberOfOrders;
     private static int n = 0;
 
 
@@ -34,14 +35,12 @@ public class Product {
         this.name = name;
     }
 
-
     public double getPrice() {
         return price;
     }
     public void setPrice(double price) {
         this.price = price;
     }
-
 
     public int getQuantity() {
         return quantity;
@@ -50,12 +49,20 @@ public class Product {
         this.quantity = quantity;
     }
 
-
     public Supplier getSuppliers() {
         return supplier;
     }
     public void setSuppliers(Supplier supplier) {
         this.supplier = supplier;
+    }
+
+    public int getNumberOfOrders() {
+        return numberOfOrders;
+    }
+
+    public void addOrder(int quantity)
+    {
+        this.numberOfOrders+= quantity;
     }
 
     public void addProduct(int productId, int quantity, String name) {

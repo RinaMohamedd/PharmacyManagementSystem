@@ -16,27 +16,18 @@ public class Supplier extends User {
         productSupplied = new ArrayList<>();
     }
 
-    public String getId() {
-        return id;
-    }
-    public void setSupplierId(String id) {
-        this.id = id;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
     public String getContactInfo() {
         return contactInfo;
     }
     public void setContactInfo(String contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    public ArrayList<Product> getProductSupplied() {
+        return productSupplied;
+    }
+    public void setProductSupplied(ArrayList<Product> productSupplied) {
+        this.productSupplied = productSupplied;
     }
 
     public void addProduct(Product product) {
@@ -51,16 +42,23 @@ public class Supplier extends User {
         return productSupplied.size();
     }
 
+    public double getTotalPriceOfAllOrders() {
+        double totalPrice = 0;
+        for (Product order : productSupplied) {
+            totalPrice += order.getPrice();
+        }
+        return totalPrice;
+    }
+
     private String generateId() {
         String Id = "Supplier_" + n;
         n++;
         return Id;
     }
 
-    public void displaySupplierInfo() {
-        System.out.println("Supplier ID: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Contact Info: " + contactInfo);
-        System.out.println("Number of Products Supplied: " + getProductCount());
+    @Override
+    public String toString() {
+        return "{ Supplier ID: " + id + ", Supplier Name: " + name + ", Constact Info: "
+                + contactInfo + "Number of Products Supplied: " + getProductCount() + " }";
     }
 }

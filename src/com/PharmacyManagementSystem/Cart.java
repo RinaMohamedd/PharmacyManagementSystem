@@ -87,6 +87,7 @@ public class Cart {
         calculateTotalPrice();
     }
 
+    //needs to check if I need to remove just a number of that product and not the whole thing
     public void removeProduct(Product product) {
         int index = productList.indexOf(product);
         if (index != -1) {
@@ -126,7 +127,7 @@ public class Cart {
     //will check later
     @Override
     public String toString() {
-        return "Order ID: " + id + ", Customer: " + customer.getName() + ", Total Price: "
-                + totalPrice + ", Order Date: " + orderDate;
+        return "{ Order ID: " + id + ", Customer: " + customer.getName() + ", Total Price: "
+                + totalPrice + ", Order Date: " + orderDate + " }";
     }
 }

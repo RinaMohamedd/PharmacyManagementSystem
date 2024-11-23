@@ -57,4 +57,18 @@ public class Customer extends User{
         n++;
         return Id;
     }
+
+    public double getTotalPriceOfAllOrders() {
+        double totalPrice = 0;
+        for (Cart order : orderHistory) {
+            totalPrice += order.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "{ Customer ID: " + id + ", Customer Name: " + name + "Number of Orders: "
+                + orderHistory.size() +" }";
+    }
 }

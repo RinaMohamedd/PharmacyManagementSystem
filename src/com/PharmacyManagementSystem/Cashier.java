@@ -30,6 +30,12 @@ public class Cashier extends User{
         order.setStatus(Status.COMPLETED);
         //more code to get payment
         System.out.println("Payment processed successfully");
+        int i = 0;
+        for (Product product: order.getProductList())
+        {
+            product.addOrder((order.getQuantityList()).get(i));
+            i++;
+        }
     }
 
     public void viewOrderHistory() {
@@ -46,5 +52,30 @@ public class Cashier extends User{
         String Id = "Cashier_" + n;
         n++;
         return Id;
+    }
+
+    //will check later
+    public double getTotalPriceOfAllOrders() {
+        double totalPrice = 0;
+        for (Cart order : orderHandled) {
+            totalPrice += order.calculateTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    //need to make sure that the order is also removed for the Customer object
+    public void cancelCart (Cart cart) {
+        orderHandled.remove(cart);
+    }
+    public void addProductToCart(Cart cart, Product product, int quantity) {
+        cart.addProduct(product, quantity);
+    }
+    public void removeProductFromCart(Cart cart, Product product, int quantity) {
+        cart.removeProduct(product);
+    }
+
+    @Override
+    public String toString() {
+        return "{ Cashier ID: " + id + ", Cashier Name: " + name + " }";
     }
 }
