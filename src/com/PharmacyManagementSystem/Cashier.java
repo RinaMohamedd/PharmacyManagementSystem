@@ -25,6 +25,7 @@ public class Cashier extends User{
         return newOrder;
     }
 
+
     public void processPayment(Cart order) {
         System.out.println("Total is " + order.calculateTotalPrice());
         order.setStatus(Status.COMPLETED);

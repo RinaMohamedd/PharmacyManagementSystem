@@ -42,6 +42,7 @@ public class Supplier extends User {
         return productSupplied.size();
     }
 
+
     public double getTotalPriceOfAllOrders() {
         double totalPrice = 0;
         for (Product order : productSupplied) {

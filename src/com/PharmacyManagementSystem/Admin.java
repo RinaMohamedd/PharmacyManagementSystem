@@ -56,6 +56,7 @@ public class Admin extends User{
         this.orders = orders;
     }*/
 
+
     //Product methods
     //20/11
     //should check if the product already exists and if it does then change the quantity only if it's greater

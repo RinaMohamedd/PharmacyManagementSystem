@@ -251,6 +251,7 @@ public class PharmacyMain {
         System.out.println("price after adding one product: " + c2.getTotalPrice());
         c2.printProductlist();
 
+
         cu1.addOrder(c1);
         cu1.addOrder(c2);
 
